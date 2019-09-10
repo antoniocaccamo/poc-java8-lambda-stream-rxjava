@@ -1,10 +1,16 @@
-package me.antoniocaccamo.java8sample;
+package me.antoniocaccamo.java8sample.lambda;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+import picocli.CommandLine.Command;
 
-public class LambdaExpression {
+@Slf4j
+@Command(
+    name = "lambda"
+)
+public class LambdaExpression implements Runnable{
 
     private static final Logger log = LoggerFactory.getLogger(LambdaExpression.class);
 
@@ -26,7 +32,8 @@ public class LambdaExpression {
         private static GreatingService logGreatingService =
         (message) -> log.info("log-ciaooooo {}", message);
 
-    public static void main(String[] args){
+    @Override
+    public void run() {
 
         int a = 10, b = 2;
         LambdaExpression.operate(a, b, addiction);   

@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.antoniocaccamo</groupId>
   <artifactId>concurrency-sample-mvn</artifactId>
   <version>0.1</version>
-  
+
   <name>me : antoniocaccamo : sample-concurrency</name>
-  
+
   <properties>
     <micronaut.version>1.2.0</micronaut.version>
     <jdk.version>1.8</jdk.version>
@@ -13,17 +15,17 @@
     <maven.compiler.source>${jdk.version}</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <exec.mainClass>me.antoniocaccamo.java8sample.FunctionalProgramming</exec.mainClass>
+    <exec.mainClass>me.antoniocaccamo.java8sample.Java8sample</exec.mainClass>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
     <lombok.version>1.18.8</lombok.version>
   </properties>
 
   <!--<repositories>-->
-    <!--<repository>-->
-      <!--<id>jcenter.bintray.com</id>-->
-      <!--<url>https://jcenter.bintray.com</url>-->
-    <!--</repository>-->
+  <!--<repository>-->
+  <!--<id>jcenter.bintray.com</id>-->
+  <!--<url>https://jcenter.bintray.com</url>-->
+  <!--</repository>-->
   <!--</repositories>-->
 
   <dependencyManagement>
@@ -111,6 +113,14 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjavafx -->
+    <dependency>
+      <groupId>io.reactivex.rxjava2</groupId>
+      <artifactId>rxjavafx</artifactId>
+      <version>2.2.2</version>
+    </dependency>
+
+
   </dependencies>
 
   <build>
@@ -195,24 +205,26 @@
               <arg>-parameters</arg>
             </compilerArgs>
             <annotationProcessorPaths>
-                  <path>
-                    <groupId>io.micronaut</groupId>
-                    <artifactId>micronaut-inject-java</artifactId>
-                    <version>${micronaut.version}</version>
-                  </path>
-                  <path>
-                    <groupId>io.micronaut</groupId>
-                    <artifactId>micronaut-validation</artifactId>
-                    <version>${micronaut.version}</version>
-                  </path>
-                  <path>
-                    <groupId>io.micronaut.configuration</groupId>
-                    <artifactId>micronaut-picocli</artifactId>
-                    <version>${micronaut.version}</version>
-                  </path>
-                  <path><groupId>org.projectlombok</groupId>
-                    <artifactId>lombok</artifactId>
-                    <version>${lombok.version}</version></path>
+              <path>
+                <groupId>io.micronaut</groupId>
+                <artifactId>micronaut-inject-java</artifactId>
+                <version>${micronaut.version}</version>
+              </path>
+              <path>
+                <groupId>io.micronaut</groupId>
+                <artifactId>micronaut-validation</artifactId>
+                <version>${micronaut.version}</version>
+              </path>
+              <path>
+                <groupId>io.micronaut.configuration</groupId>
+                <artifactId>micronaut-picocli</artifactId>
+                <version>${micronaut.version}</version>
+              </path>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
             </annotationProcessorPaths>
           </configuration>
           <executions>
@@ -245,9 +257,11 @@
                     <version>${micronaut.version}</version>
                   </path>
 
-                  <path><groupId>org.projectlombok</groupId>
+                  <path>
+                    <groupId>org.projectlombok</groupId>
                     <artifactId>lombok</artifactId>
-                    <version>${lombok.version}</version></path>
+                    <version>${lombok.version}</version>
+                  </path>
 
                 </annotationProcessorPaths>
               </configuration>

@@ -1,14 +1,24 @@
 
-package me.antoniocaccamo.java8sample;
+package me.antoniocaccamo.java8sample.functionalprogramming;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
 import lombok.extern.slf4j.Slf4j;
+import picocli.CommandLine.Command;
 
 @Slf4j
-public class FunctionalProgramming {
+@Command(
+    name = "functional-programming"
+)
+public class FunctionalProgramming implements Runnable{
+
+
+    @FunctionalInterface
+    interface Evaluate<T> {
+        void evalList(List<T> list, Predicate<T> predicate);
+    }
 
     private static Evaluate<Integer> evaluate = (list, predicate) -> { 
         for ( Integer i : list ) 
@@ -16,8 +26,8 @@ public class FunctionalProgramming {
                 log.info("{}", i);
     };
 
-    
-    public static void main(String[] args){
+    @Override
+    public void run() {
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8,9);
          
@@ -34,9 +44,9 @@ public class FunctionalProgramming {
         evaluate.evalList(numbers, greater3);
     }
 
-    interface Evaluate<T> {
-        void evalList(List<T> list, Predicate<T> predicate);
-    }
+    
+
+    
     
 }
 
