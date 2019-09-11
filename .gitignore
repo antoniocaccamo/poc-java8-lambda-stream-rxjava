@@ -26,3 +26,6 @@ hs_err_pid*
 .factorypath
 .project
 .vscode/
+target
+*.iml
+**/dependency-reduced-pom.xml

@@ -3,10 +3,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>net.antoniocaccamo</groupId>
-  <artifactId>concurrency-sample-mvn</artifactId>
+  <artifactId>poc-java8-lambda-stream-rxjava</artifactId>
   <version>0.1</version>
 
-  <name>me : antoniocaccamo : sample-concurrency</name>
+  <name>me : antoniocaccamo : poc-java8-lambda-stream-rxjava</name>
 
   <properties>
     <micronaut.version>1.2.0</micronaut.version>
