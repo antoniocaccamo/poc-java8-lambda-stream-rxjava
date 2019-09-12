@@ -1,8 +1,11 @@
 package me.antoniocaccamo.java8sample.rxjava;
 
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
+
+import java.util.concurrent.TimeUnit;
 
 
 @Slf4j
@@ -91,10 +94,22 @@ public class RxJava implements Runnable{
         ;
 
 
+        log.info("subscribeOn   ..");
+        Observable sthread = Observable.range(1,5)
+                .subscribeOn(Schedulers.newThread());
+        sthread.subscribe(i ->
+                        log.info("subscriber 1 :  Receiving {} on thread {}", i, Thread.currentThread().getName())
+                );
+        sthread.subscribe(i ->
+                log.info("subscriber 2 :  Receiving {} on thread {}", i, Thread.currentThread().getName())
+        )
+        ;
 
-
-
-
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -1,18 +1,13 @@
 package me.antoniocaccamo.java8sample;
 
 import io.micronaut.configuration.picocli.PicocliRunner;
-
 import io.micronaut.context.annotation.Value;
-import io.micronaut.core.cli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
 import lombok.extern.slf4j.Slf4j;
 import me.antoniocaccamo.java8sample.functionalprogramming.FunctionalProgramming;
 import me.antoniocaccamo.java8sample.lambda.LambdaExpression;
 import me.antoniocaccamo.java8sample.rxjava.RxJava;
-
-import javax.inject.Inject;
-import javax.sql.DataSource;
+import me.antoniocaccamo.java8sample.rxjava.rxjavafx.*;
+import picocli.CommandLine.Command;
 
 
 @Command(name = "java8sample",
@@ -20,9 +15,12 @@ import javax.sql.DataSource;
         description = "...",
         mixinStandardHelpOptions = true,
         subcommands = {
-            LambdaExpression.class,
-            FunctionalProgramming.class,
-            RxJava.class
+                LambdaExpression.class,
+                FunctionalProgramming.class,
+                RxJava.class,
+                RxJavaFxA.class,
+                RxJavaFxB.class,
+                RxJavaFxC.class
         }
 )
 @Slf4j
