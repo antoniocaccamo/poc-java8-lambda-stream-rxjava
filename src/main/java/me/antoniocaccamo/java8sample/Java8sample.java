@@ -20,7 +20,8 @@ import picocli.CommandLine.Command;
                 RxJava.class,
                 RxJavaFxA.class,
                 RxJavaFxB.class,
-                RxJavaFxC.class
+                RxJavaFxC.class,
+                PlayerRxJavaFx.class
         }
 )
 @Slf4j

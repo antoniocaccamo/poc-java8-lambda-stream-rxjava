@@ -120,6 +120,14 @@
       <version>2.2.2</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.controlsfx/controlsfx -->
+    <dependency>
+        <groupId>org.controlsfx</groupId>
+        <artifactId>controlsfx</artifactId>
+        <version>8.40.14</version>
+    </dependency>
+
+
 
   </dependencies>
 
