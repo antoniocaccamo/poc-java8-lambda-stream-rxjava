@@ -6,6 +6,7 @@ import io.reactivex.Observable;
 import io.reactivex.rxjavafx.observables.JavaFxObservable;
 import io.reactivex.rxjavafx.schedulers.JavaFxScheduler;
 import io.reactivex.schedulers.Schedulers;
+import javafx.event.Event;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.consensusj.supernautfx.SupernautFxApp;
 import org.consensusj.supernautfx.SupernautFxLauncher;
@@ -68,19 +70,24 @@ public class PlayerRxJavaFx implements SupernautFxApp, Runnable {
 
 
         JavaFxObservable.actionEventsOf(button)
-                .doOnError(t -> log.error("error occurred : {}", t))
+                .doOnError(t -> log.error("error occurred : ", t))
                 .flatMapMaybe( ea ->
                         Observable.just( new FileChooser().showOpenDialog(null))
                         .lastElement()
                 )
                 .observeOn(Schedulers.io())
                 .map(f -> new Media(f.toURI().toASCIIString()))
+                .doOnError(t -> log.error("error occurred :", t))
                 .subscribeOn(JavaFxScheduler.platform())
-                .subscribe(m -> {
-                    input.setText(m.getSource());
-                    MediaPlayer mediaPlayer = new MediaPlayer(m);
-                    mediaView.setMediaPlayer(mediaPlayer);
-                })
+                .subscribe(
+                        m -> {
+                            input.setText(m.getSource());
+                            MediaPlayer mediaPlayer = new MediaPlayer(m);
+                            mediaView.setMediaPlayer(mediaPlayer);
+                        },
+                        t -> log.error("error occurred : ", t)
+                )
+
         ;
 
 //        JavaFxObservable.actionEventsOf(button)
@@ -96,6 +103,25 @@ public class PlayerRxJavaFx implements SupernautFxApp, Runnable {
                 mediaView
         );
         stage.setScene(new Scene(vBox));
+
+
+        JavaFxObservable.changesOf(stage.xProperty())
+                .subscribe(ae -> log.info("stage.xProperty : {}", ae))
+        ;
+
+        JavaFxObservable.changesOf(stage.yProperty())
+                .subscribe(ae -> log.info("stage.yProperty : {}", ae))
+        ;
+
+        JavaFxObservable.changesOf(stage.widthProperty())
+                .subscribe(ae -> log.info("stage.widthProperty : {}", ae))
+        ;
+
+        JavaFxObservable.changesOf(stage.heightProperty())
+                .subscribe(ae -> log.info("stage.heightProperty : {}", ae))
+        ;
+
+
         stage.show();
 
     }

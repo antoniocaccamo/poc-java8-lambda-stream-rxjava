@@ -5,6 +5,7 @@ package me.antoniocaccamo.java8sample.rxjava.rxjavafx;/**
 import io.reactivex.Observable;
 import io.reactivex.rxjavafx.observables.JavaFxObservable;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -64,7 +65,12 @@ public class RxJavaFxA implements SupernautFxApp, Runnable {
         vBox.getChildren().addAll(button,secondSubButton);
 
         stage.setScene(new Scene(vBox));
+
+        JavaFxObservable.changesOf(stage.widthProperty())
+                .subscribe(System.out::println);
+
         stage.show();
+
 
     }
 
